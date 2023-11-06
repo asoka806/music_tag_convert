@@ -1,5 +1,6 @@
 import wave
 import flac
+import mp3
 import os
 import mutagen
 
@@ -16,11 +17,13 @@ def main():
         if type is None:
             continue
         if 'audio/flac' in type.mime:
-            flac.handleFlac(fileName)
+            flac.handle(fileName)
         elif 'audio/wav' in type.mime:
-            wave.handleWave(fileName)
+            wave.handle(fileName)
+        elif 'audio/mp3' in type.mime:
+            mp3.handle(fileName)
         else:
-            print('Unsupport file mime: ' + fileName)
+            print('Unsupport file mime: ' + ' '.join(type.mime) + ' file: ' + fileName)
 
 if __name__=="__main__":
     main()

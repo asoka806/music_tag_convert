@@ -21,7 +21,7 @@ fields = {
     'TSOP': TSOP,
     'APIC': APIC
 }
-def handleWave(fileName):
+def handle(fileName):
     audio = WAVE(fileName)
 
     all_tags = copy.deepcopy(audio.tags)
