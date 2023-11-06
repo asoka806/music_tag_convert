@@ -47,6 +47,7 @@ def handleWave(fileName):
     (path, oldName) = os.path.split(fileName)
     newname = os.path.join(path, convert.sc(oldName))
     os.rename(fileName, newname)
+    print(newname + ' done')
 
 
     #

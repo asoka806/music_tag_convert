@@ -10,17 +10,17 @@ def findAllFile(base):
             yield fullname
 
 def main():
-    base = './music/'
-    for fileName in findAllFile(base):
+    music_path = './music/'
+    for fileName in findAllFile(music_path):
         type = mutagen.File(fileName)
-        if type == None:
+        if type is None:
             continue
         if 'audio/flac' in type.mime:
-            print(fileName + ' is a flac')
             flac.handleFlac(fileName)
         elif 'audio/wav' in type.mime:
-            print('this is a wav')
             wave.handleWave(fileName)
+        else:
+            print('Unsupport file mime: ' + fileName)
 
 if __name__=="__main__":
     main()
