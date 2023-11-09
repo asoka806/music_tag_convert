@@ -51,7 +51,7 @@ def handle_id3_tags(audio, fileName):
     discnumber = ''
     if audio is None:
         print('文件空 ' + fileName)
-    return tracknumber, artist, title, discnumber, totaldiscs
+        return tracknumber, artist, title, discnumber, totaldiscs
     fields = {
         'TIT2': TIT2,
         'TPE1': TPE1,
@@ -94,10 +94,20 @@ def handle_id3_tags(audio, fileName):
                 else:
                     artist = ', '.join(sc_array)
             elif tag == 'TPOS':
-                totaldiscs = tc_array[0]
-                discnumber = tc_array[0]
+                if '/' in tc_array[0]:
+                    tmpA = tc_array[0].split('/', 1)
+                    totaldiscs = tmpA[1]
+                    discnumber = tmpA[0]
+                else:
+                    totaldiscs = tc_array[0]
+                    discnumber = tc_array[0]
+
             elif tag == 'TRCK':
-                tracknumber = tc_array[0].zfill(2)
+                if '/' in tc_array[0]:
+                    tmpA = tc_array[0].split('/', 1)
+                    tracknumber = tmpA[0].zfill(2)
+                else:
+                    tracknumber = tc_array[0].zfill(2)
 
             if tag == 'TXXX:ARTISTS':
                 desc = audio.get(tag).desc

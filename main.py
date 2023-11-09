@@ -17,8 +17,9 @@ def main(argv):
     if len(argv) <= 1:
         print('Please input your music path')
         return
-
     music_path = os.path.abspath(argv[1])
+    # path1 = '.\music'
+    # music_path = os.path.abspath(path1)
 
     print('music path = ' + music_path)
     for fileName in findAllFile(music_path):
