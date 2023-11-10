@@ -5,6 +5,7 @@ import mp4
 import os
 import mutagen
 import dff
+import dsf
 import sys
 
 def findAllFile(base):
@@ -40,6 +41,8 @@ def main(argv):
             mp4.handle(fileName)
         elif 'audio/x-dff' in type.mime:
             dff.handle(fileName)
+        elif 'audio/dsf' in type.mime:
+            dsf.handle(fileName)
         else:
             print('Unsupport file mime: ' + ' '.join(type.mime) + ' file: ' + fileName)
 
